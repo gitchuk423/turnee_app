@@ -1,4 +1,8 @@
 TurneeApp::Application.routes.draw do
+  get "personal_records/new"
+
+  get "attorneys/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
