@@ -1,4 +1,6 @@
 TurneeApp::Application.routes.draw do
+  get "attorney/index"
+
   get "personal_records/new"
 
   get "attorneys/new"
