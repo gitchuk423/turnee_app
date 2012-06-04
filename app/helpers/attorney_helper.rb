@@ -1,0 +1,2 @@
+module AttorneyHelper
+end
