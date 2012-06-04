@@ -38,3 +38,15 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem 'bcrypt-ruby', '3.0.1'
+
+gem 'bootstrap-sass', '2.0.0'
+
+# Grab Capybara to simulate user for tests
+group :test do
+  gem 'capybara', '1.1.2'
+end
+
+# Include the PostgreSQL gem in production for deployment to Heroku:
+#group :production do
+#  gem 'pg', '0.12.2'
+#end
