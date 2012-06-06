@@ -2,10 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-gem 'sqlite3'
-
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
+  gem 'sqlite3'	
 end
 
 # Gems used only for assets and not required
@@ -50,6 +49,6 @@ end
 
 
 # Include the PostgreSQL gem in production for deployment to Heroku:
-#group :production do
-#  gem 'pg', '0.12.2'
-#end
+group :production do
+  gem 'pg', '0.12.2'
+end
