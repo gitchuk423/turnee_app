@@ -41,10 +41,13 @@ gem 'bcrypt-ruby', '3.0.1'
 
 gem 'bootstrap-sass', '2.0.0'
 
-# Grab Capybara to simulate user for tests
+# Capybara to simulate user for tests
+# FactoryGirl to create objects
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails'
 end
+
 
 # Include the PostgreSQL gem in production for deployment to Heroku:
 #group :production do

@@ -11,13 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603231208) do
+ActiveRecord::Schema.define(:version => 20120606011044) do
 
   create_table "attorneys", :force => true do |t|
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
+    t.string   "email"
   end
+
+  add_index "attorneys", ["email"], :name => "index_attorneys_on_email"
 
   create_table "clients", :force => true do |t|
     t.integer  "attorney_id"

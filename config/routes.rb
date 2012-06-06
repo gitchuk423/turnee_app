@@ -1,13 +1,10 @@
 TurneeApp::Application.routes.draw do
- 
-  get "attorney/index"
 
-  get "personal_records/new"
-
-  get "attorneys/new"
-
- 
   root to: 'static_pages#home'
+  
+  # Resources
+  resources :attorneys
+  resources :personal_records 
 
   # Static pages
   match '/home', to: 'static_pages#home'
