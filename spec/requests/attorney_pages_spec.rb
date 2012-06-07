@@ -40,8 +40,17 @@ describe "Attorney pages" do
         fill_in "Confirmation", with: "foobar"
       end
 
-      it "should create a user" do
+      it "should create an attorney" do
         expect { click_button submit }.to change(Attorney, :count).by(1)
+      end
+
+	 describe "after saving the attorney" do
+        before { click_button submit }
+        let(:attorney) { Attorney.find_by_email('user@example.com') }
+
+        it { should have_selector('title', text: attorney.name) }
+        it { should have_selector('div.alert.alert-success', text: 'Welcome')}       
+      	it { should have_link('Sign out') }
       end
     end
   end
