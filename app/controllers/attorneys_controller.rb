@@ -17,6 +17,7 @@ class AttorneysController < ApplicationController
   def create
     @attorney = Attorney.new(params[:attorney])
     if @attorney.save
+      sign_in @attorney
       flash[:success] = "Welcome to Turnee!" 
       redirect_to @attorney
     else

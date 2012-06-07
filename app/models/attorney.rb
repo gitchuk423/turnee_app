@@ -11,6 +11,10 @@ class Attorney < ActiveRecord::Base
   has_one :professional_record
   accepts_nested_attributes_for :personal_record, :professional_record
   
+  #callbacks
+  before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token 
+
   
   # validations
   #		check email format, must be present and in format XXX@XXX.XXX	
@@ -23,18 +27,19 @@ class Attorney < ActiveRecord::Base
   validates :password, length: { minimum: 6 } 
   validates :password_confirmation, presence: true
 
-  
-  #callbacks
-  before_save { |user| user.email = email.downcase }
-
-
-
-
 
   def name
     #return "#{self.personal_record.first_name} #{self.personal_record.last_name}"     
   	self.email
   end
+  
+  private
+  
+  	def create_remember_token
+  		# make a custom remember token using the urlsafe_base64 method 
+  		# (creates a Base64 string safe for use in URIs)
+   		self.remember_token = SecureRandom.urlsafe_base64
+  	end
 
 
 end
