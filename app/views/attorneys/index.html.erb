@@ -1,0 +1,10 @@
+<%= provide(:title, 'All attorneys') %>
+<h1>All attorneys</h1>
+
+<%= will_paginate %>
+
+<ul class="attorneys">
+    <%= render @attorneys %> 
+</ul>
+
+<%= will_paginate %>

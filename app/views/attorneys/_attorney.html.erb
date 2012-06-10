@@ -1,0 +1,7 @@
+<li>
+      <%= gravatar_for attorney, size: 52 %>
+      <%= link_to attorney.name, attorney %>
+      <% if current_attorney.admin? && !current_attorney?(attorney) %>
+        | <%= link_to 'delete', attorney, method: :delete, confirm: "Are you sure want to delete #{attorney.name}?" %>
+      <% end %>
+</li>

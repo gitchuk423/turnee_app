@@ -1,10 +1,16 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+gem 'bcrypt-ruby', '3.0.1'
+gem 'bootstrap-sass', '2.0.0'
+gem 'faker', '1.0.1'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 
 group :development, :test do
   gem 'rspec-rails', '2.10.0'
   gem 'sqlite3'	
+  gem 'debugger'
 end
 
 # Gems used only for assets and not required
@@ -36,15 +42,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'bcrypt-ruby', '3.0.1'
-
-gem 'bootstrap-sass', '2.0.0'
 
 # Capybara to simulate user for tests
 # FactoryGirl to create objects
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 

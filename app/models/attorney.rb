@@ -1,7 +1,7 @@
 class Attorney < ActiveRecord::Base
   
-  attr_accessible  :email,
-  				   :password, :password_confirmation,
+  attr_accessible  :email, :first_name, :last_name, :middle_initial,
+  				         :password, :password_confirmation,
                    :personal_record_attributes, :professional_record_attributes
   
   # Add methods to set and authenticate against a BCrypt password. 
@@ -29,9 +29,19 @@ class Attorney < ActiveRecord::Base
 
 
   def name
-    #return "#{self.personal_record.first_name} #{self.personal_record.last_name}"     
-  	self.email
+    return full_name
   end
+  
+  def full_name
+    [first_name, middle_initial_with_period, last_name].compact.join(' ')
+  end
+
+  def middle_initial_with_period
+    "#{middle_initial}." unless middle_initial.blank?
+  end
+
+
+  
   
   private
   
