@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609210350) do
+ActiveRecord::Schema.define(:version => 20120612002512) do
 
   create_table "attorneys", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20120609210350) do
   add_index "attorneys", ["remember_token"], :name => "index_attorneys_on_remember_token"
 
   create_table "clients", :force => true do |t|
-    t.integer  "attorney_id"
-    t.integer  "personal_record_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer  "referral_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
   end
 
   create_table "personal_records", :force => true do |t|
@@ -64,14 +66,15 @@ ActiveRecord::Schema.define(:version => 20120609210350) do
   end
 
   create_table "referrals", :force => true do |t|
-    t.integer  "referred_from_attorney_id"
+    t.integer  "attorney_id"
     t.integer  "referred_to_attorney_id"
-    t.integer  "status"
     t.integer  "client_id"
     t.text     "public_comments"
     t.text     "private_comments"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "referral_name"
+    t.string   "status"
   end
 
   create_table "schools", :force => true do |t|

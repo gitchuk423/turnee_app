@@ -1,0 +1,26 @@
+<%= provide(:title, 'Create a Referral') %>
+<h1>Create a Referral</h1>
+     
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for [@attorney, @referral] do |r| %>
+      
+      <%= render 'error_messages' %>
+      
+      <%= r.label :referred_to_attorney_id %>
+      <%= r.select(:referred_to_attorney_id, (1..4).to_a) %>      
+       
+      <%= r.label :client_id %>
+      <%= r.select(:client_id, (1..4).to_a) %>
+       
+      <%= r.label :public_comments, "Public Comments" %>
+      <%= r.text_field :public_comments %>
+
+      <%= r.label :private_comments, "Private Comments (only visible to you)" %>
+      <%= r.text_field :private_comments %>
+
+      <%= r.submit "Create referral", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

@@ -61,12 +61,31 @@ describe "Attorney pages" do
 
   describe "profile page" do
     
-    let(:attorney) {Factory.create(:attorney)}
+    let(:attorney) { FactoryGirl.create(:attorney) }
+    let(:attorney_one) { FactoryGirl.create(:attorney) }
+    let(:attorney_two) { FactoryGirl.create(:attorney) }
     
+    let!(:m1) { FactoryGirl.create(:referral, attorney: attorney, 
+                                   client_id: 1, 
+                                   referred_to_attorney_id: attorney_one.id,
+                                   private_comments: "This is private",
+                                   public_comments: "This is public") }
+    let!(:m2) { FactoryGirl.create(:referral, attorney: attorney, 
+                                   client_id: 2, 
+                                   referred_to_attorney_id: attorney_two.id,
+                                   private_comments: "This is private too",
+                                   public_comments: "This is public too") }
+
     before { visit attorney_path(attorney) }
 
     it { should have_selector('h1',    text: attorney.name) }
     it { should have_selector('title', text: attorney.name) }
+
+    describe "referrals" do
+      it { should have_content(m1.summary) }
+      it { should have_content(m2.summary) }
+      it { should have_content(attorney.referrals.count) }
+    end
   end
   
   describe "edit" do
@@ -139,5 +158,8 @@ describe "Attorney pages" do
   
 
   end
+  
+  
+  
   
 end

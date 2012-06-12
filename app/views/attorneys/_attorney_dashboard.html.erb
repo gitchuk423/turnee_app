@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">  
+    <div class="well sidebar-nav">  
+      <ul class="nav nav-list">  
+        <li class="nav-header">Referrals</li>
+          <li>
+           <%= link_to "Create a referral", new_attorney_referral_path(@attorney) %>
+           </li>
+          <li>
+            <%= link_to "View all referrals", attorney_referrals_path(@attorney) %>
+          </li>
+         <li>
+            <a href="#">
+              Modify a referral
+            </a>
+         </li>
+         <li>
+            <a href="#">
+              Delete a referral
+            </a>
+         </li>
+ 
+        <li class="nav-header">Relationships</li>
+          <li>
+            <a href="#">
+              Create a relationship
+            </a>
+           </li>
+          <li>
+            <a href="#">
+              View all relationships
+            </a>
+          </li>
+         <li>
+            <a href="#">
+              Change a relationship
+            </a>
+         </li>
+         <li>
+            <a href="#">
+              Delete a relationship
+            </a>
+         </li> 
+     </ul>  
+    </div><!--/.well -->  
+  </div><!--/span--> 
+  
+  <div class="span9">  
+          <div class="leaderboard">  
+            <h1><%= @attorney.full_name %></h1>  
+            <p> what goes here?</p>  
+             
+          </div>  
+
+          <div class="row-fluid">  
+            <div class="span6">  
+              <h3>Recent Referrals</h3>  
+                <ol class="referrals">
+                  <%= render @attorney.referrals.all(limit: 5) %>
+                </ol>
+              <p><a class="btn btn-primary btn-mini" href="#">Create a new referral</a></p>  
+            </div><!--/span-->  
+            <div class="span6">  
+              <h3>New Relationships</h3>  
+              <p>No new relationships</p>  
+              <p><a class="btn btn-primary btn-mini" href="#">Create a new relationship</a></p>  
+            </div><!--/span-->  
+
+          </div><!--/row-->  
+          <hr>  
+  
+    </div><!--/.fluid-container-->  
+  
+

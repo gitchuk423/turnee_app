@@ -1,0 +1,7 @@
+<li>
+  <span class="content">
+  <%= link_to @referral.summary, @referral%></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(@referral.created_at) %> ago.
+  </span>
+</li>

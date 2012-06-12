@@ -3,18 +3,22 @@ TurneeApp::Application.routes.draw do
   root to: 'static_pages#home'
   
   # Resources
-  resources :attorneys
+  resources :attorneys do
+    resources :referrals
+  end
+  
   resources :personal_records 
   resources :sessions, only: [:new, :create, :destroy]
+  
 
   # Static pages
-  match '/home', to: 'static_pages#home'
+  match '/home',    to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/signup',  to: 'attorneys#new'
   match '/signin',  to: 'sessions#new'
-  match '/signout',  to: 'sessions#destroy', via: :delete
+  match '/signout', to: 'sessions#destroy', via: :delete
 
 
 

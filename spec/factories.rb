@@ -20,7 +20,23 @@ FactoryGirl.define do
     }
     a.after_create {|attorney|
       attorney.personal_record.save; attorney.professional_record.save}
-  end    
+  end
+  
+  factory :client do |c|
+    c.sequence(:first_name) { |n| "Clive #{n}"}
+    c.sequence(:last_name)  { |n| "Ant #{n}"}
+    c.sequence(:email)      { |n| "cliveant#{n}@example.com" }
+  end
+  
+  factory :referral do
+    status "created"
+    public_comments "These are public comments"
+    private_comments "These are private comments"
+    referred_to_attorney_id 2
+    client_id 1
+    attorney
+  end
+   
 end
 
 

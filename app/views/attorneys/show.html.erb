@@ -1,11 +1,28 @@
 <% provide(:title, @attorney.name) %>
-<div class "row">
-	<aside class = "span4">
-		<section>
-			<h1>
-				<%= gravatar_for @attorney %>
-				<%= @attorney.name %>
-			</h1>
-		</section>
-	</aside>
-</div>
+
+<% if current_attorney?(@attorney) %>
+	<%= render 'attorney_dashboard' %>
+<% else %>
+	<div class="span10">
+	
+      <aside = "span12">
+	      <section>
+		      <h1>
+			      <%= gravatar_for @attorney %>
+			      <%= @attorney.name %>
+		      </h1>
+	      </section>
+      </aside>
+
+      <div class="span8">
+          <h3>Latest Referrals </h3>
+            <ol class="referrals">
+                <% if @referrals.any? %>
+                  <%= render @referrals.all(limit: 5) %>
+                <% else %>
+                    No recent referrals
+                <% end %>
+            </ol>
+      </div>
+  </div>
+ <% end %>

@@ -7,12 +7,15 @@ class Attorney < ActiveRecord::Base
   # Add methods to set and authenticate against a BCrypt password. 
   has_secure_password   
 
+  has_many :referrals, dependent: :destroy #delete referral with attny
+  accepts_nested_attributes_for :referrals, allow_destroy: true
+  
   has_one :personal_record
   has_one :professional_record
   accepts_nested_attributes_for :personal_record, :professional_record
   
   #callbacks
-  before_save { |user| user.email = email.downcase }
+  before_save { |attorney| attorney.email = email.downcase }
   before_save :create_remember_token 
 
   
@@ -35,6 +38,7 @@ class Attorney < ActiveRecord::Base
   def full_name
     [first_name, middle_initial_with_period, last_name].compact.join(' ')
   end
+
 
   def middle_initial_with_period
     "#{middle_initial}." unless middle_initial.blank?

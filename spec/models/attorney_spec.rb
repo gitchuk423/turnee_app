@@ -19,6 +19,8 @@ describe "Attorney" do
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
   
+  it {should respond_to(:referrals)}
+  
   it { should be_valid }
   it { should_not be_admin }
 
@@ -37,7 +39,29 @@ describe "Attorney" do
     its(:remember_token) { should_not be_blank }
   end
 
- 
+  describe "referral associations" do
+
+    before { @a.save }
+    let!(:older_referral) do 
+      FactoryGirl.create(:referral, attorney: @a, created_at: 1.day.ago)
+    end
+    let!(:newer_referral) do
+      FactoryGirl.create(:referral, attorney: @a, created_at: 1.hour.ago)
+    end
+
+    it "should have the right referral in the right order" do
+      @a.referrals.should == [newer_referral, older_referral]
+    end
+    
+    it "should destroy associated referrals" do
+      referrals = @a.referrals
+      @a.destroy
+      referrals.each do |referral|
+        Referral.find_by_id(referral.id).should be_nil
+      end
+    end
+    
+  end
 
 end
 

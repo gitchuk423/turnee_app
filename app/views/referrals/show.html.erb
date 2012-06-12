@@ -1,0 +1,36 @@
+<% provide(:title, @attorney.full_name) %>
+
+
+      
+    <table class = "table">
+      <thead>
+        <tr><h2>  Referral Information <h2></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Client Name</th>
+          <td> <%= @client.full_name %> </td>
+        </tr>
+        
+        <tr>
+          <th>Client Email</th>
+          <td> <%= @client.email %> </td>
+        </tr>
+        
+        <tr>
+          <th>Public Comments</th>
+          <td> <%= @referral.public_comments %> </td>
+        </tr>
+        
+        <tr>
+          <th>Private Comments</th>
+          <td> <%= @referral.private_comments %> </td>
+        </tr>
+        
+          </tr>
+          </tbody>
+    </table>
+
+
+      
+

@@ -52,6 +52,10 @@ class AttorneysController < ApplicationController
   	
   end	
   
+  def show
+    @referrals = @attorney.referrals
+  end
+  
   
   def index
     @attorneys = Attorney.paginate(page: params[:page])
@@ -63,8 +67,6 @@ class AttorneysController < ApplicationController
     flash[:success] = "#{n} has been deleted."
     redirect_to attorneys_path
   end
-
-
 
   protected
   

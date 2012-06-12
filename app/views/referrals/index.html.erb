@@ -1,0 +1,9 @@
+<%= provide(:title, 'All Referrals') %>
+<h1>All Referrals</h1>
+
+<ul class="referral">
+    <%= render @referrals %>  
+</ul>
+
+<%= will_paginate @referrals%>
+
