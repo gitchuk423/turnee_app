@@ -1,5 +1,13 @@
 class CreatePublications < ActiveRecord::Migration
   def change
-    add_column :publications, :professional_record_id, :integer
+    
+      create_table :publications do |t|
+
+      t.integer :professional_record_id
+
+      t.timestamps
+    end
+  
+  
   end
 end
