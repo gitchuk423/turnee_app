@@ -1,5 +1,7 @@
 class AttorneysController < ApplicationController
 
+  layout "layouts/main", except: [:create]
+
   # Helper for checking if attorney is signed in
   before_filter :signed_in_attorney, only: [:index, :edit, :update, :destroy]
 
@@ -59,6 +61,8 @@ class AttorneysController < ApplicationController
   
   def index
     @attorneys = Attorney.paginate(page: params[:page])
+    @attorney = current_attorney
+    @referrals = current_attorney.referrals
   end
 
   def destroy
@@ -78,12 +82,6 @@ class AttorneysController < ApplicationController
 		  @attorney = Attorney.find(params[:id])
 	  end
 	  
-	  def signed_in_attorney
-	    unless signed_in?
-	      store_location #store requested page so we can redirect after sign-in
-	      redirect_to signin_path, notice: "Please sign in." unless signed_in?
-	    end
-	  end
 	  
 	  def correct_attorney
 	    # not sure why I can't use the before_filter here ... 

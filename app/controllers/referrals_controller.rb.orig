@@ -1,5 +1,6 @@
 class ReferralsController < ApplicationController
   
+<<<<<<< .merge_file_wwYzcJ
 
   layout "main"
   
@@ -8,12 +9,23 @@ class ReferralsController < ApplicationController
   
   def new
     @attorney = current_attorney
+=======
+  before_filter :signed_in_attorney, only [:create, :destroy]
+  before_filter :correct_attorney, only :destroy
+  
+  def new
+    # not sure if this is needed?
+>>>>>>> .merge_file_cYzWgG
     @referral = current_attorney.referrals.new
   end
   
   def create
+<<<<<<< .merge_file_wwYzcJ
 
     # note there should be a signed_in check here (via filter) to make sure
+=======
+    # note there shoudl be a signed_in check here (via filter) to make sure
+>>>>>>> .merge_file_cYzWgG
     # attorneys are signed in before creating referrals
     
     @referral = current_attorney.referrals.build(params[:referral])
@@ -29,29 +41,44 @@ class ReferralsController < ApplicationController
   end
   
   def index
+<<<<<<< .merge_file_wwYzcJ
 
     @attorney = current_attorney
+=======
+>>>>>>> .merge_file_cYzWgG
     @referrals = current_attorney.referrals.paginate(page: params[:page], per_page: 10)
   end
   
   def show
+<<<<<<< .merge_file_wwYzcJ
 
     @attorney = Attorney.find_by_id(params[:attorney_id])
     @referral = @attorney.referrals.find_by_id(params[:id])
+=======
+    @referral = current_attorney.referrals.find_by_id(params[:id])
+>>>>>>> .merge_file_cYzWgG
     @client   = Client.find(@referral.client_id)
   end
   
   def destroy
   	@referral.destroy
+<<<<<<< .merge_file_wwYzcJ
   	redirect_to current_attorney
+=======
+  	redirect_to root_path
+>>>>>>> .merge_file_cYzWgG
   end
   
   private
  	def correct_attorney
  		# make sure that we only find referrals from the current attorney
  		@referral = current_attorney.referrals.find_by_id(params[:id])
+<<<<<<< .merge_file_wwYzcJ
  		redirect_to root_path if @referral.nil?
 
+=======
+ 		redirect to root_path if @referral.nil?
+>>>>>>> .merge_file_cYzWgG
  	end
 
 end

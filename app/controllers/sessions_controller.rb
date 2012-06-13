@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-  def new
-  	
-  end
 
   def create
   	attorney = Attorney.find_by_email(params[:session][:email])

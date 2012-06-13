@@ -18,6 +18,13 @@ module SessionsHelper
   def current_attorney=(attorney)
     @current_attorney = attorney
   end 
+  
+  def signed_in_attorney
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
 
   def current_attorney
     @current_attorney ||= Attorney.find_by_remember_token(cookies[:remember_token])

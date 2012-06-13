@@ -1,0 +1,36 @@
+ 
+    <div class="well sidebar-nav">  
+      <ul class="nav nav-list">  
+        <li class="nav-header">Referrals</li>
+          <li>
+           <%= link_to "Create a referral", new_attorney_referral_path(@attorney) %>
+           </li>
+          <li>
+            <%= link_to "View all referrals", attorney_referrals_path(@attorney) %>
+          </li>
+
+ 
+        <li class="nav-header">Relationships</li>
+          <li>
+            <a href="#">
+              Create a relationship
+            </a>
+           </li>
+          <li>
+            <a href="#">
+              View all relationships
+            </a>
+          </li>
+          
+        <li class="nav-header">Attorneys</li>
+          <li>
+            <a href="#">
+              Find an attorney
+            </a>
+           </li>
+          <li>
+            <%= link_to "View all attorneys", attorneys_path %>
+          </li>
+
+     </ul>  
+    </div><!--/.well -->   
