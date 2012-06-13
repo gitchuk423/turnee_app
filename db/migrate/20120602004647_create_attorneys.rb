@@ -3,5 +3,5 @@ class CreateAttorneys < ActiveRecord::Migration
     create_table :attorneys do |t|
       t.timestamps
     end
-    
+  end  
 end
