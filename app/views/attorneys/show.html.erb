@@ -2,18 +2,98 @@
 
 <% if current_attorney?(@attorney) %>
 	<%= render 'attorney_dashboard' %>
-<% else %>
-	<div class="span10">
-	
-      <aside = "span12">
-	      <section>
-		      <h1>
-			      <%= gravatar_for @attorney %>
-			      <%= @attorney.name %>
-		      </h1>
-	      </section>
-      </aside>
+<% end %>
 
+<div class="container-fluid">
+  <div class="row-fluid">
+    <aside class="span4">
+        <section>
+          <!-- <%= gravatar_for @attorney, { size: 100 }%> -->
+          <img src="/assets/danny_ferry.jpg" style="max-width:200px;"  border="0" />
+        </section>
+        <section>
+          <h1><%= @attorney.name %></h1>
+          <h2>Patent Attorney <br>
+          Philadelphia, PA 19103</h2>
+        </section>
+        
+        <% if !current_attorney?(@attorney) %>
+        <section>
+          <a class="btn btn-large btn-primary" href="">Create a referral to <%= @attorney.name %></a>  
+        </section>
+        <% end %>
+        
+    </aside>
+    
+    <% unless @attorney.professional_experiences.empty? %>
+    <div class="span8">
+      <div class="row-fluid">
+        <div class = "span12"  >
+              <table class = "table" style="width: 55em; height: 10em;  border: 1em solid white;">
+                    <caption style="text-align: left"><h3>Recent Professional Experience<h3></caption>
+                  <thead>
+                    <tr>
+                      <th> Employer </th>
+                      <th> Location </th>
+                      <th> Position </th>
+                      <th> Time Period</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @attorney.professional_experiences.all(limit: 2).each do |experience| %>   
+                    <tr>
+                      <td><%= experience.name %></td>
+                      <td><%= experience.location %></td>
+                      <td><%= experience.position %></td>
+                      <td><%= experience.start_date%> to <%= experience.end_date %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+        </div>   
+      </div> <!-- row -->
+    <% end %>
+    
+      <div class="row-fluid">
+        <div class = "span12" style="width: 40em; height: 10em;border: 1em solid white;">
+                <table class = "table">
+                  <thead>
+                    <caption style="text-align: left"><h3>Academic Experience<h3></caption>
+                    <tr>
+                      <th> Second Firm </th>
+                      <th> Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>…</td>
+                      <td>…</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+      </div> <!-- row -->
+      
+      <div class="row-fluid">
+        <div class = "span12" style="width: 40em; height: 10em;  border: 1em solid white;">Expertise</div>
+      </div> <!-- row -->
+      
+      <div class="row-fluid">
+        <div class = "span12" style="width: 40em; height: 10em;  border: 1em solid white;">Representative Cases</div>
+      </div> <!-- row -->
+       
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+
+
+<% if current_attorney?(@attorney) %>
       <div class="span8">
           <h3>Latest Referrals </h3>
             <ol class="referrals">

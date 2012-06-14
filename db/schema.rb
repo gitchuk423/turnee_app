@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612002512) do
+ActiveRecord::Schema.define(:version => 20120614032702) do
 
   create_table "attorneys", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(:version => 20120612002512) do
   end
 
   add_index "personal_records", ["email"], :name => "index_personal_records_on_email", :unique => true
+
+  create_table "professional_experiences", :force => true do |t|
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "attorney_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "position"
+    t.boolean  "current",     :default => false
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+  end
 
   create_table "professional_records", :force => true do |t|
     t.string   "experience"

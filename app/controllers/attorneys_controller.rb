@@ -1,6 +1,6 @@
 class AttorneysController < ApplicationController
 
-  layout "layouts/main", except: [:create]
+  #layout "layouts/main", except: [:create]
 
   # Helper for checking if attorney is signed in
   before_filter :signed_in_attorney, only: [:index, :edit, :update, :destroy]

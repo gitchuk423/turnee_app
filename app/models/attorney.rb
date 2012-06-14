@@ -7,6 +7,8 @@ class Attorney < ActiveRecord::Base
   # Add methods to set and authenticate against a BCrypt password. 
   has_secure_password   
 
+  has_many :professional_experiences, dependent: :destroy #delete with attny
+
   has_many :referrals, dependent: :destroy #delete referral with attny
   accepts_nested_attributes_for :referrals, allow_destroy: true
   
