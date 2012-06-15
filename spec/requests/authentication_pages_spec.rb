@@ -27,8 +27,8 @@ describe "Authentication" do
 		  
 		  it { should have_selector('title', text: attorney.name) }
 		  
-		  it { should have_link('Attorneys',    href: attorneys_path) }
-		  it { should have_link('Profile', href: attorney_path(attorney)) }
+
+
 		  it { should have_link('Sign out', href: signout_path) }
 		  it { should_not have_link('Sign in', href: signin_path) }
 		  it { should have_link('Settings', href: edit_attorney_path(attorney)) }

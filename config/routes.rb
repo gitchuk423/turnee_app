@@ -2,6 +2,9 @@ TurneeApp::Application.routes.draw do
 
   root to: 'static_pages#home'
   
+  match 'create_referral/:referred_to_attorney_id' => 'referrals#new', :as => :new_attorney_referral
+
+  
   # Resources
   resources :attorneys do
     resources :referrals

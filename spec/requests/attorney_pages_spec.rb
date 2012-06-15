@@ -18,8 +18,8 @@ describe "Attorney pages" do
     end
 
 
-    it { should have_selector('title', text: 'All attorneys') }
-    it { should have_selector('h1',    text: 'All attorneys') }
+    it { should have_selector('title', text: 'All Attorneys') }
+    it { should have_selector('h1',    text: 'All Attorneys') }
 
     describe "pagination" do
 
