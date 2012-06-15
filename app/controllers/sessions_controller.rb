@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
       sign_in attorney
       
       # Redirect back to page requested before sign-in or attoney's profile page
-      redirect_back_or attorney
+      redirect_back_or root_path
     else
-      flash[:error] = 'Invalid email/password combination' # Not quite right!
+      flash[:error] = 'Invalid email/password combination' 
       render 'new'
     end
   	

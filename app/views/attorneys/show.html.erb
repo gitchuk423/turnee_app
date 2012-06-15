@@ -1,9 +1,5 @@
 <% provide(:title, @attorney.name) %>
 
-<% if current_attorney?(@attorney) %>
-	<%= render 'attorney_dashboard' %>
-<% end %>
-
 <div class="container-fluid">
   <div class="row-fluid">
     <aside class="span4">
@@ -19,8 +15,13 @@
         
         <% if !current_attorney?(@attorney) %>
         <section>
-          <a class="btn btn-large btn-primary" href="">Create a referral to <%= @attorney.name %></a>  
+        
+        <%= link_to "Create a referral to #{@attorney.first_name}", 
+            new_attorney_referral_path(@attorney.id), class: "btn btn-large btn-primary" %>
+        
         </section>
+        <% else %>
+          <h3> This is you! </h3>
         <% end %>
         
     </aside>
@@ -90,19 +91,6 @@
 
 
 
-    
 
 
-<% if current_attorney?(@attorney) %>
-      <div class="span8">
-          <h3>Latest Referrals </h3>
-            <ol class="referrals">
-                <% if @referrals.any? %>
-                  <%= render @referrals.all(limit: 5) %>
-                <% else %>
-                    No recent referrals
-                <% end %>
-            </ol>
-      </div>
-  </div>
- <% end %>
+

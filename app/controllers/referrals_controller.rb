@@ -1,14 +1,16 @@
-class ReferralsController < ApplicationController
-  
-
-  layout "main"
-  
+class ReferralsController < ApplicationController 
+ 
   before_filter :signed_in_attorney, only: [:create, :destroy]
   before_filter :correct_attorney, only: :destroy
   
   def new
     @attorney = current_attorney
+    
+    @referred_to_attorney = Attorney.find_by_id(params[:referred_to_attorney_id])
+    
     @referral = current_attorney.referrals.new
+    
+
   end
   
   def create
@@ -16,14 +18,19 @@ class ReferralsController < ApplicationController
     # note there should be a signed_in check here (via filter) to make sure
     # attorneys are signed in before creating referrals
     
+    params[:referral][:referred_to_attorney_id] = params[:referred_to_attorney_id]
+    
     @referral = current_attorney.referrals.build(params[:referral])
     
     if @referral.save
       flash[:success] = "Referral successfully created!" 
-      redirect_to current_attorney
+      redirect_to '/home'
     else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
+      
+      @attorney = current_attorney
+      @referred_to_attorney = Attorney.find_by_id(params[:referred_to_attorney_id])
       render 'new'
     end
   end
@@ -38,7 +45,7 @@ class ReferralsController < ApplicationController
 
     @attorney = Attorney.find_by_id(params[:attorney_id])
     @referral = @attorney.referrals.find_by_id(params[:id])
-    @client   = Client.find(@referral.client_id)
+    
   end
   
   def destroy

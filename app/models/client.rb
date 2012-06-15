@@ -1,6 +1,8 @@
 class Client < ActiveRecord::Base
 
   attr_accessible :referral_id, :first_name, :last_name, :email
+  
+  belongs_to :referral
    
   # validations
   #		check email format, must be present and in format XXX@XXX.XXX	

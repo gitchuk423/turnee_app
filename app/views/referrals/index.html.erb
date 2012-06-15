@@ -2,7 +2,9 @@
 <h1>All Referrals</h1>
 
 <ul class="referral">
-    <%= render @referrals %>  
+    <%= render(partial: "shared/referral", 
+                             collection: current_attorney.referrals) || 
+                             "You have not created any referrals yet!" %>  
 </ul>
 
 <%= will_paginate @referrals%>

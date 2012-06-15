@@ -8,10 +8,16 @@
 
           <% if signed_in? %>
 
+            
+             <li>
+              <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search">
+              </form>
+           </li>
           
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+              <i class="icon-user icon-white"></i> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Settings", edit_attorney_path(current_attorney) %></li>
@@ -22,14 +28,7 @@
                 </li>
               </ul>
             </li>
-            
-            <li><%= link_to "Help", help_path %></li>
-            
-             <li>
-              <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search">
-              </form>
-           </li>
+          
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
           <% end %>

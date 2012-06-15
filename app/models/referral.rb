@@ -1,8 +1,11 @@
 class Referral < ActiveRecord::Base
  
-  attr_accessible :client_id, :private_comments, 
-                  :public_comments, 
+  attr_accessible :client_id, 
+                  :client_first_name, :client_last_name,
+                  :client_email, :client_phone,
+                  :private_comments, :public_comments, 
                   :referred_to_attorney_id, :status
+
 
   belongs_to :attorney
   
@@ -13,14 +16,24 @@ class Referral < ActiveRecord::Base
   
   validates :attorney_id, presence: true
   validates :referred_to_attorney_id, presence: true
-  validates :client_id, presence: true
+
 
   validate :status_is_valid, :did_not_refer_to_myself, on: :create
+ 
+  # validations
+  #		check email format, must be present and in format XXX@XXX.XXX	
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :client_email, format: { with: VALID_EMAIL_REGEX }
   
   def summary
-    attny_name = Attorney.find(referred_to_attorney_id).full_name || "Unknown attorney"
-    "Referral to #{attny_name}" 
+    referred_to_attorney = Attorney.find_by_id(referred_to_attorney_id).full_name
+    "Referred #{client_full_name} to #{referred_to_attorney}."
   end
+                
+  def client_full_name
+    [client_first_name, client_last_name].compact.join(' ')
+  end
+
   
   
 private

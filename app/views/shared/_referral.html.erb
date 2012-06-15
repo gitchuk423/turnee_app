@@ -1,0 +1,8 @@
+<li>
+  <span class="content">
+  <%= link_to referral.summary, attorney_referral_path(current_attorney, referral) %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(referral.created_at) %> ago.
+  </span>
+</li>
+

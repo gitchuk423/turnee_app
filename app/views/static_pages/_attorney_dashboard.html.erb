@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+  
+  <div class="span3">
+    <%= render "shared/attorney_sidebar" %>
+  </div>
+  
+  <div class="span9">  
+          <div class="leaderboard">  
+            <h1><%= current_attorney.full_name %></h1>  
+            <p> what goes here?</p>  
+             
+          </div>  
+
+          <div class="row-fluid">  
+            <div class="span6">  
+              <h3>Recent Referrals</h3>  
+                <ol class="referrals">
+                  <%= render(partial: "shared/referral", 
+                             collection: current_attorney.referrals.all(limit: 5)) || 
+                             "No recent referrals" %>
+                </ol>
+              <p><a class="btn btn-primary btn-mini" href="#">Create a new referral</a></p>  
+            </div><!--/span-->  
+            <div class="span6">  
+              <h3>New Relationships</h3>  
+              <p>No new relationships</p>  
+              <p><a class="btn btn-primary btn-mini" href="#">Create a new relationship</a></p>  
+            </div><!--/span-->  
+
+          </div><!--/row-->  
+          <hr>  
+  
+    </div><!--/.fluid-container-->  
+  
+

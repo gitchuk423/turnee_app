@@ -3,10 +3,10 @@
       <ul class="nav nav-list">  
         <li class="nav-header">Referrals</li>
           <li>
-           <%= link_to "Create a referral", new_attorney_referral_path(@attorney) %>
+           <%= link_to "Create a referral", new_attorney_referral_path(current_attorney) %>
            </li>
           <li>
-            <%= link_to "View all referrals", attorney_referrals_path(@attorney) %>
+            <%= link_to "View all referrals", attorney_referrals_path(current_attorney) %>
           </li>
 
  

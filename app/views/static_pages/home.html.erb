@@ -1,9 +1,16 @@
-<div class="center hero-unit">
-  <h1>Welcome to Turnee</h1>
-  <h2>
-    Making it easier for you to be an attorney.
-  </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+<% if signed_in? %>
+	<%= render 'attorney_dashboard' %>
+<% else %>
 
-</div>
+  <div class="center hero-unit">
+    <h1>Welcome to Turnee</h1>
+    <h2>
+      Making it easier for you to be an attorney.
+    </h2>
+
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+
+  </div>
+  
+<% end %>
