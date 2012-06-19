@@ -1,0 +1,2 @@
+module ReferralHistoryHelper
+end

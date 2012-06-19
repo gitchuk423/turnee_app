@@ -1,0 +1,17 @@
+<% provide(:title, @attorney.full_name) %>
+
+
+<h1>Your referral history with <%= @referred_to_attorney.full_name %> </h1>
+
+<div class="accordion" id="referral_accordian">
+  <!---<ul class="referral"> -->
+      <%= render(partial: "shared/referral_accordian", 
+                 collection: @referrals) || 
+                 "You have not created any referrals to this attorney." %>  
+   <!-- </ul> -->
+</div>
+
+<%= will_paginate @referrals%>
+
+      
+

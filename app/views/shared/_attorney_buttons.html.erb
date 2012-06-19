@@ -1,0 +1,18 @@
+<% if !current_attorney?(@attorney) %>
+    <section>
+    
+    <%= link_to "Create a referral to #{@attorney.first_name}", 
+        new_attorney_referral_path(@attorney.id), class: "btn btn-large btn-primary" %>
+    
+    </section>
+    
+    
+    <section>
+    
+    <%= link_to "View your referral history with #{@attorney.first_name}", 
+        show_referral_history_path(@attorney.id), class: "btn btn-large btn-primary" %>
+    
+    </section>
+<% else %>
+      <h3> This is you! </h3>
+<% end %>

@@ -9,29 +9,27 @@
         </section>
         <section>
           <h1><%= @attorney.name %></h1>
-          <h2>Patent Attorney <br>
+          <h2> <%=@attorney.professional_experiences.first.position %><br>
           Philadelphia, PA 19103</h2>
         </section>
         
-        <% if !current_attorney?(@attorney) %>
-        <section>
+    <%= render '/shared/attorney_buttons' %>
         
-        <%= link_to "Create a referral to #{@attorney.first_name}", 
-            new_attorney_referral_path(@attorney.id), class: "btn btn-large btn-primary" %>
-        
-        </section>
-        <% else %>
-          <h3> This is you! </h3>
-        <% end %>
         
     </aside>
     
-    <% unless @attorney.professional_experiences.empty? %>
+    
+
+    
     <div class="span8">
       <div class="row-fluid">
         <div class = "span12"  >
               <table class = "table" style="width: 55em; height: 10em;  border: 1em solid white;">
-                    <caption style="text-align: left"><h3>Recent Professional Experience<h3></caption>
+                    <caption style="text-align: left">
+                    <h3>Recent Professional Experience </h3>
+                        <% if @attorney.professional_experiences.size > 2 %>
+                         <a  data-toggle="modal" href="#myModal" >View All</a>
+                        <% end %> </caption>
                   <thead>
                     <tr>
                       <th> Employer </th>
@@ -41,19 +39,25 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% @attorney.professional_experiences.all(limit: 2).each do |experience| %>   
+                    <% @attorney.professional_experiences.all(limit: 2).each do |experience| %>    
                     <tr>
                       <td><%= experience.name %></td>
                       <td><%= experience.location %></td>
                       <td><%= experience.position %></td>
-                      <td><%= experience.start_date%> to <%= experience.end_date %></td>
+                      <td><%= experience.formatted_start_date%> to <%= experience.formatted_end_date %></td>
                     </tr>
+                    <% end %>
+                    
+                    <% if current_attorney?(@attorney) %>
+                      <tr>
+                        <td> <%= link_to "Add a professional_experience", new_professional_experience_path %> </td>
+                      </tr>
                     <% end %>
                   </tbody>
                 </table>
         </div>   
       </div> <!-- row -->
-    <% end %>
+
     
       <div class="row-fluid">
         <div class = "span12" style="width: 40em; height: 10em;border: 1em solid white;">
@@ -88,8 +92,38 @@
 </div>
 
 
+    
 
-
+    <div class="modal hide fade" id="myModal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+          <h3>All Professional Experiences</h3>
+      </div>
+          <div class="modal-body">
+            <table class = "table" style="width: 55em; height: 10em;  border: 1em solid white;">
+                <thead>
+                    <tr>
+                      <th> Employer </th>
+                      <th> Location </th>
+                      <th> Position </th>
+                      <th> Time Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% @attorney.professional_experiences.each do |experience| %>    
+                  <tr>
+                    <td><%= experience.name %></td>
+                    <td><%= experience.location %></td>
+                    <td><%= experience.position %></td>
+                    <td><%= experience.formatted_start_date%> to <%= experience.formatted_end_date %></td>
+                  </tr>
+                  <% end %>
+                  
+                </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
 
 
 

@@ -1,0 +1,44 @@
+<%= provide(:title, 'New Professional Experience') %>
+<h1>Add a new professional experience</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+   
+    
+     <%= form_for(@professional_experience) do |f| %>
+      
+      <%= render 'shared/error_messages', object: @professional_experience %>
+      
+      <%= f.label :name, "Company or Firm Name" %>
+      <%= f.text_field :name %> 
+      
+      <%= f.label :position, "Your Position or Title" %>
+      <%= f.text_field :position %> 
+      
+      <%= f.label :start_date, "Start Date" %>  
+      <%= date_select :professional_experience, :start_date, start_year: 1940,
+          prompt: {day: 'Select day', month: 'Select month', year:'Select year'} %>
+      
+      <%= f.label :end_date, "End Date (leave blank if still employed here)" %>
+
+      <%= date_select :professional_experience, :end_date, start_year: 1940,
+          default: @professional_experience.default_end_date,
+          prompt: {day: 'Select day', month: 'Select month', year:'Select year'} %>
+          
+      <%= f.label :country %>
+      <%= f.country_select :country, priority: %w(US CA), prompt: 'Please select a country' %>
+      
+      <%= f.label :state %>
+      <%= render partial: 'shared/subregion_select' %><br>
+
+      <%= f.submit "Add Professional Experience", class: "btn btn-large btn-primary" %>
+
+    <% end %>
+    
+  </div>
+</div>
+
+<!--
+  attr_accessible :end_date, :name, :start_date, :position, :current,
+                  :city, :state, :country
+                 -->

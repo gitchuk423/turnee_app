@@ -3,14 +3,17 @@ TurneeApp::Application.routes.draw do
   root to: 'static_pages#home'
   
   match 'create_referral/:referred_to_attorney_id' => 'referrals#new', :as => :new_attorney_referral
-
+  
+  match 'referral_history/:referred_to_attorney_id' => 'referral_history#show', :as => :show_referral_history
+  
+  get '/professional_experience/subregion_options' => 'professional_experiences#subregion_options'
   
   # Resources
   resources :attorneys do
     resources :referrals
   end
   
-  resources :personal_records 
+  resources :professional_experiences 
   resources :sessions, only: [:new, :create, :destroy]
   
 

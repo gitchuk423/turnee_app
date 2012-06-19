@@ -54,21 +54,18 @@ namespace :db do
     end
     
         
-    attorneys = Attorney.all(limit: 10)
-    50.times do |n|
+    attorneys = Attorney.all(limit: 25)
+    50.times do |n|         
       
-      client = Client.create!(first_name: Faker::Name.first_name,
-                              last_name:  Faker::Name.last_name,
-                              email: "example-#{n+1}@example.org")
-           
-      
-      referred_to_attorney_id = (11..99).to_a.sample
-
       attorneys.each { |attny| attny.referrals.create!(
-            referred_to_attorney_id: referred_to_attorney_id,
+            referred_to_attorney_id: (26..99).to_a.sample,
+            client_first_name: Faker::Name.first_name,
+            client_last_name: Faker::Name.last_name,
+            client_email: Faker::Internet.email,
+            client_phone: Faker::PhoneNumber.phone_number,
             public_comments: Faker::Lorem.sentence(10),
-            private_comments: Faker::Lorem.sentence(5),
-            client_id:  client.id)}
+            private_comments: Faker::Lorem.sentence(5))} 
+    
     end
     
   end

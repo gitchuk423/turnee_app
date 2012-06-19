@@ -1,6 +1,6 @@
 class ReferralsController < ApplicationController 
  
-  before_filter :signed_in_attorney, only: [:create, :destroy]
+  before_filter :signed_in_attorney
   before_filter :correct_attorney, only: :destroy
   
   def new
@@ -39,19 +39,21 @@ class ReferralsController < ApplicationController
 
     @attorney = current_attorney
     @referrals = current_attorney.referrals.paginate(page: params[:page], per_page: 10)
+
   end
   
   def show
 
-    @attorney = Attorney.find_by_id(params[:attorney_id])
-    @referral = @attorney.referrals.find_by_id(params[:id])
-    
+    @attorney = current_attorney
+    @referral = current_attorney.referrals.find(params[:id])
+
   end
   
   def destroy
   	@referral.destroy
   	redirect_to current_attorney
   end
+  
   
   private
  	def correct_attorney

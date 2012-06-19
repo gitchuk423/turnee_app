@@ -7,5 +7,5 @@
                              "You have not created any referrals yet!" %>  
 </ul>
 
-<%= will_paginate @referrals%>
+<%= will_paginate @referrals unless current_attorney.referrals.empty? %>
 

@@ -25,6 +25,14 @@ class Referral < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :client_email, format: { with: VALID_EMAIL_REGEX }
   
+  
+  def one_line
+    creation = created_at.strftime("%m/%d/%Y")
+
+    referred_to_attorney = Attorney.find_by_id(referred_to_attorney_id).full_name
+    "#{creation} : Referred #{client_full_name}"
+  end
+  
   def summary
     referred_to_attorney = Attorney.find_by_id(referred_to_attorney_id).full_name
     "Referred #{client_full_name} to #{referred_to_attorney}."
@@ -34,7 +42,7 @@ class Referral < ActiveRecord::Base
     [client_first_name, client_last_name].compact.join(' ')
   end
 
-  
+
   
 private
   
