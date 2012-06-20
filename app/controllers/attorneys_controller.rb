@@ -18,7 +18,6 @@ class AttorneysController < ApplicationController
 
   def new
     @attorney = Attorney.new
-    @attorney.build_personal_record
     @attorney.build_professional_record
   end
 
@@ -32,13 +31,14 @@ class AttorneysController < ApplicationController
       sign_in @attorney
       flash[:success] = "Welcome to Turnee!" 
       redirect_to @attorney
+      
     else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
       render "new"
     end
   end
-  
+   
   def update
   	
   	if @attorney.update_attributes(params[:attorney])
@@ -70,6 +70,11 @@ class AttorneysController < ApplicationController
     @attorney.destroy
     flash[:success] = "#{n} has been deleted."
     redirect_to attorneys_path
+  end
+
+  def subregion_options
+
+    render partial: 'shared/attorneys_subregion_select'
   end
 
   protected

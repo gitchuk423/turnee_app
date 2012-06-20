@@ -9,8 +9,8 @@
         </section>
         <section>
           <h1><%= @attorney.name %></h1>
-          <h2> <%=@attorney.professional_experiences.first.position %><br>
-          Philadelphia, PA 19103</h2>
+          <h2> <%=@attorney.attorney_type %><br>
+          Philadelphia, PA </h2>
         </section>
         
     <%= render '/shared/attorney_buttons' %>
@@ -50,7 +50,7 @@
                     
                     <% if current_attorney?(@attorney) %>
                       <tr>
-                        <td> <%= link_to "Add a professional_experience", new_professional_experience_path %> </td>
+                        <%= link_to "Add a professional_experience", new_professional_experience_path %> 
                       </tr>
                     <% end %>
                   </tbody>

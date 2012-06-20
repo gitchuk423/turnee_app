@@ -27,6 +27,7 @@ class ProfessionalExperiencesController < ApplicationController
   end
   
   def subregion_options
+  
     render partial: 'shared/subregion_select'
   end
 

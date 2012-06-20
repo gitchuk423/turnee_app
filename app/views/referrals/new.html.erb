@@ -9,7 +9,7 @@
   
     <%= form_for [@attorney, @referral] do |r| %>
       
-      <%= render 'error_messages' %>
+      <%= render 'shared/error_messages',  object: @referral%>
       
       <%= hidden_field_tag  :referred_to_attorney_id, @referred_to_attorney.id %>
       

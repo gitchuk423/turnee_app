@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615014925) do
+ActiveRecord::Schema.define(:version => 20120620014714) do
 
   create_table "attorneys", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -23,6 +23,10 @@ ActiveRecord::Schema.define(:version => 20120615014925) do
     t.string   "last_name"
     t.string   "middle_initial"
     t.boolean  "admin",           :default => false
+    t.string   "country"
+    t.string   "state"
+    t.string   "attorney_type"
+    t.string   "city"
   end
 
   add_index "attorneys", ["email"], :name => "index_attorneys_on_email"

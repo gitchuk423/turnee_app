@@ -7,6 +7,7 @@ TurneeApp::Application.routes.draw do
   match 'referral_history/:referred_to_attorney_id' => 'referral_history#show', :as => :show_referral_history
   
   get '/professional_experience/subregion_options' => 'professional_experiences#subregion_options'
+  get '/attorneys/subregion_options' => 'attorneys#subregion_options'
   
   # Resources
   resources :attorneys do

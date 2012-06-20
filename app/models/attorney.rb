@@ -1,8 +1,10 @@
 class Attorney < ActiveRecord::Base
   
   attr_accessible  :email, :first_name, :last_name, :middle_initial,
-  				         :password, :password_confirmation,
-                   :personal_record_attributes, :professional_record_attributes
+  				         :password, :password_confirmation, 
+  				         :city, :state, :country,
+  				         :attorney_type,
+                   :professional_record_attributes
   
   # Add methods to set and authenticate against a BCrypt password. 
   has_secure_password   
@@ -12,9 +14,8 @@ class Attorney < ActiveRecord::Base
   has_many :referrals, dependent: :destroy #delete referral with attny
   accepts_nested_attributes_for :referrals, allow_destroy: true
   
-  has_one :personal_record
   has_one :professional_record
-  accepts_nested_attributes_for :personal_record, :professional_record
+  accepts_nested_attributes_for :professional_record
   
   #callbacks
   before_save { |attorney| attorney.email = email.downcase }
@@ -31,7 +32,6 @@ class Attorney < ActiveRecord::Base
   #		hacked config/locales/en.yml to rename password_digest to support error message
   validates :password, length: { minimum: 6 } 
   validates :password_confirmation, presence: true
-
 
   def name
     return full_name

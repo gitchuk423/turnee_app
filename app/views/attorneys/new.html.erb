@@ -10,12 +10,23 @@
       <%= f.label :first_name %>
       <%= f.text_field :first_name %> 
       
-         
       <%= f.label :middle_initial %>
       <%= f.select(:middle_initial, ('A'..'Z').to_a) %>
        
       <%= f.label :last_name %>
       <%= f.text_field :last_name %> 
+      
+      <%= f.label :attorney_type, "What is your title? (e.g, \"Patent Attorney\")" %>
+      <%= f.text_field :attorney_type %>
+      
+      <%= f.label :country %>
+      <%= f.country_select :country, priority: %w(US CA), prompt: 'Please select a country' %>
+      
+      <%= f.label :city %>
+      <%= f.text_field :city %>
+      
+      <%= f.label :state %>
+      <%= render partial: 'shared/attorneys_subregion_select'%><br>
     
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -24,8 +35,8 @@
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
+      <%= f.password_field :password_confirmation %> 
+      
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

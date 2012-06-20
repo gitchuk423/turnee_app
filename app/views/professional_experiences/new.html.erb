@@ -29,7 +29,7 @@
       <%= f.country_select :country, priority: %w(US CA), prompt: 'Please select a country' %>
       
       <%= f.label :state %>
-      <%= render partial: 'shared/subregion_select' %><br>
+      <%= render partial: 'shared/subregion_select', object: @professional_experience %><br>
 
       <%= f.submit "Add Professional Experience", class: "btn btn-large btn-primary" %>
 

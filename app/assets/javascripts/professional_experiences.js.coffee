@@ -4,7 +4,7 @@
 
 $ ->
   $('select#professional_experience_country').change (event) ->
-    select_wrapper = $('#professional_experience_state_wrapper')
+    select_wrapper = $('#state_wrapper')
 
     $('select', select_wrapper).attr('disabled', true)
 
