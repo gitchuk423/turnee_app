@@ -17,6 +17,8 @@ group :development, :test do
   gem 'faker', '1.0.1'
 end
 
+gem 'faker', '1.0.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
