@@ -1,4 +1,14 @@
 class Attorney < ActiveRecord::Base
+
+  ACCEPTED_AND_ACTIVE = [%(status = ? AND
+                          deactivated = ? AND
+                          (email_verified IS NULL OR email_verified = ?)),
+                          Connection::ACCEPTED, false, true]
+                          
+  REQUESTED_AND_ACTIVE = [%(status = ? AND
+                          deactivated = ? AND
+                          (email_verified IS NULL OR email_verified = ?)),
+                          Connection::REQUESTED, false, true]
   
   attr_accessible  :email, :first_name, :last_name, :middle_initial,
   				         :password, :password_confirmation, 
@@ -8,6 +18,16 @@ class Attorney < ActiveRecord::Base
   
   # Add methods to set and authenticate against a BCrypt password. 
   has_secure_password   
+
+  has_many :connections
+  has_many :contacts, :through => :connections,
+                      :conditions => ACCEPTED_AND_ACTIVE,
+                      :order => 'people.created_at DESC'
+
+  has_many :requested_contacts, :through => :connections,
+           :source => :contact,
+           :conditions => REQUESTED_AND_ACTIVE
+
 
   has_many :professional_experiences, dependent: :destroy #delete with attny
 

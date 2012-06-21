@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620014714) do
+ActiveRecord::Schema.define(:version => 20120621032021) do
+
+  create_table "activities", :force => true do |t|
+    t.boolean  "public"
+    t.integer  "item_id"
+    t.integer  "person_id"
+    t.string   "item_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "activities", ["item_id"], :name => "index_activities_on_item_id"
+  add_index "activities", ["item_type"], :name => "index_activities_on_item_type"
 
   create_table "attorneys", :force => true do |t|
     t.datetime "created_at",                         :null => false
@@ -40,6 +52,24 @@ ActiveRecord::Schema.define(:version => 20120620014714) do
     t.string   "last_name"
     t.string   "email"
   end
+
+  create_table "connections", :force => true do |t|
+    t.integer  "attorney_id"
+    t.integer  "contact_id"
+    t.integer  "status"
+    t.datetime "accepted_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "connections", ["attorney_id", "contact_id"], :name => "index_connections_on_person_id_and_contact_id"
+
+  create_table "feeds", :force => true do |t|
+    t.integer "person_id"
+    t.integer "activity_id"
+  end
+
+  add_index "feeds", ["person_id", "activity_id"], :name => "index_feeds_on_person_id_and_activity_id"
 
   create_table "personal_records", :force => true do |t|
     t.string   "first_name"
